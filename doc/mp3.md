@@ -22,7 +22,7 @@
     </tr>
     <tr>
       <td><strong>TA Hours:</strong></td>
-      <td colspan="3">Wed. 12:30-13:30, Thr. 13:00-14:00 (@CSIE B04)</td>
+      <td colspan="3">Wed. 12:30-13:30, Thu. 13:00-14:00 (@CSIE B04)</td>
     </tr>
   </table>
 </div>
@@ -249,7 +249,7 @@ Regardless of the algorithm, your scheduler must follow these rules:
 
 Fixed priority scheduling uses a static priority value assigned to each task at registration.
 
-#### Funtion to be implemented
+#### Function to be implemented
 
 ```c
 static struct sched_result schedule_priority(void);
@@ -296,7 +296,7 @@ Three tasks:
 
 EFDF prioritizes tasks based on their absolute deadlines, but only considers tasks that are still **feasible**.
 
-#### Funtion to be implemented
+#### Function to be implemented
 
 ```c
 static struct sched_result schedule_efdf(void);
@@ -351,7 +351,7 @@ int current_distance;        // Distance to failure state
 - You are responsible for maintaining the `history` queue and the `current_distance` variable.
 - At process creation, the `history` queue is initialized with all `1`s, and `current_distance` is initialized to `firm_k - firm_m + 1`.
 
-#### Funtions to be implemented
+#### Functions to be implemented
 
 ```c
 void on_cycle_ended(struct proc *p, int deadline_miss);
@@ -378,7 +378,7 @@ static struct sched_result schedule_dbp(void);
     - `(0, 0, 0, 0)`: There are fewer than two successes. `distance = 0`.
 -   **Task Selection**: Among all RUNNABLE RT processes, select the one with the **smallest `current_distance`**.
 -   **Tie-breaking**: 
-    1.  If distances are equal, the one with the earliest deadline winds.
+    1.  If distances are equal, the one with the earliest deadline wins.
     2.  If deadlines are also equal, the one with the **lower `pid`** wins.
 -   **Preemption**: A sleeping RT process will preempt the current process if, upon waking, it has a smaller `current_distance` or wins the EDF tie-break.
 
@@ -451,7 +451,7 @@ In the test cases, the following constraints on the arguments are always satisfi
 We have 5 public test programs, from `test1` to `test5`. You can run them with the following command:
 
 ```sh
-# insides xv6
+# inside xv6
 test<1-5> <FP|EFDF|DBP>
 ```
 
